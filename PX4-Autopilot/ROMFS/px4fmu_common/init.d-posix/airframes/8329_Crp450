@@ -1,0 +1,40 @@
+. ${R}etc/init.d/rc.mc_defaults
+
+
+# param set-default CA_AIRFRAME 0
+
+param set-default CA_ROTOR_COUNT 4
+
+
+param set-default CA_ROTOR0_PX 0.1591
+param set-default CA_ROTOR0_PY 0.1591
+param set-default CA_ROTOR0_KM 0.5592
+
+param set-default CA_ROTOR1_PX -0.1591
+param set-default CA_ROTOR1_PY -0.1591
+param set-default CA_ROTOR1_KM 0.5592
+
+param set-default CA_ROTOR2_PX 0.1591
+param set-default CA_ROTOR2_PY -0.1591
+param set-default CA_ROTOR2_KM -0.5592
+
+param set-default CA_ROTOR3_PX -0.1591
+param set-default CA_ROTOR3_PY 0.1591
+param set-default CA_ROTOR3_KM -0.5592
+
+param set-default PWM_MAIN_FUNC1 101
+param set-default PWM_MAIN_FUNC2 102
+param set-default PWM_MAIN_FUNC3 103
+param set-default PWM_MAIN_FUNC4 104
+
+param set-default SIH_IXX 0.02241
+param set-default SIH_IYY 0.02631
+param set-default SIH_IZZ 0.03758
+param set_default SIN_MASS 2.32133
+
+param set_default EKF2_AID_MASK 24
+param set-default EKF2_EV_DELAY 5
+param set-default EKF2_EV_CTRL 15
+param set-default EKF2_GPS_CTRL 0
+
+param set-default MPC_XY_CRUISE 5.0

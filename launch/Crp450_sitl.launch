@@ -1,0 +1,56 @@
+<launch>
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0"/>
+  <arg name="R" default="0"/>
+  <arg name="P" default="0"/>
+  <arg name="Y" default="0"/>
+  <!-- vehicle model and world -->
+  <arg name="est" default="ekf2"/>
+  <arg name="vehicle" default="Crp450"/>
+  <arg name="world" default="$(find gazebo_crp450)/worlds/$(arg vehicle).world"/>
+  <arg name="sdf" default="$(find gazebo_crp450)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
+
+  <!-- gazebo configs -->
+  <arg name="gui" default="true"/>
+  <arg name="debug" default="false"/>
+  <arg name="verbose" default="false"/>
+  <arg name="paused" default="false"/>
+  <arg name="respawn_gazebo" default="false"/>
+  <!-- MAVROS configs -->
+  <arg name="fcu_url" default="udp://:14540@localhost:14557"/>
+  <arg name="respawn_mavros" default="false"/>
+  <!-- PX4 configs -->
+  <arg name="interactive" default="true"/>
+  <!-- PX4 SITL and Gazebo -->
+  <include file="$(find gazebo_crp450)/launch/posix_sitl.launch">
+      <arg name="x" value="$(arg x)"/>
+      <arg name="y" value="$(arg y)"/>
+      <arg name="z" value="$(arg z)"/>
+      <arg name="R" value="$(arg R)"/>
+      <arg name="P" value="$(arg P)"/>
+      <arg name="Y" value="$(arg Y)"/>
+      <arg name="world" value="$(arg world)"/>
+      <arg name="vehicle" value="gazebo-classic_$(arg vehicle)"/>
+      <arg name="sdf" value="$(arg sdf)"/>
+      <arg name="gui" value="$(arg gui)"/>
+      <arg name="interactive" value="$(arg interactive)"/>
+      <arg name="debug" value="$(arg debug)"/>
+      <arg name="verbose" value="$(arg verbose)"/>
+      <arg name="paused" value="$(arg paused)"/>
+      <arg name="respawn_gazebo" value="$(arg respawn_gazebo)"/>
+  </include>
+
+  <!-- MAVROS -->
+  <include file="$(find mavros)/launch/px4.launch">
+      <!-- GCS link is provided by SITL -->
+      <arg name="gcs_url" value=""/>
+      <arg name="fcu_url" value="$(arg fcu_url)"/>
+      <arg name="respawn_mavros" value="$(arg respawn_mavros)"/>
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find gazebo_crp450)/rviz/rviz.rviz"/>
+  <node name="gazebo_tools_init" pkg="gazebo_crp450" type="gazebo_tools_init"/>
+  <node name="fly_demo" pkg="gazebo_crp450" type="fly_demo"/>
+
+</launch>

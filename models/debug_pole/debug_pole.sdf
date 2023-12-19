@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <model name="debug_pole">
+
+    <!-- <static>true</static> -->
+    <link name="pole_link">
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius> <!-- 杆的半径 -->
+            <length>1.0</length> <!-- 杆的高度 -->
+          </cylinder>
+        </geometry>
+      </visual>
+      <inertial>
+        <mass>1000000.0</mass> <!-- 杆的质量 -->
+        <inertia>
+          <ixx>1000000</ixx> <!-- 杆的惯性矩 -->
+          <iyy>1000000</iyy>
+          <izz>1000000</izz>
+          <ixy>1000000</ixy>
+          <ixz>1000000</ixz>
+          <iyz>1000000</iyz>
+        </inertia>
+      </inertial>
+    </link>
+  </model>
+</sdf>
